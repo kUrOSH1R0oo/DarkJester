@@ -1,0 +1,66 @@
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠟⠉⠀⠀⠈⠙⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠃⠀⠀⠀⠀⠀⠀⠀⢻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡇⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣇⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⠾⠛⠛⠉⠉⠉⠉⠉⠉⠉⠉⠉⠛⠛⠻⢷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡟⠁⠀⠀⣀⣤⣤⣤⣶⣶⣶⣤⣤⣤⣀⡀⠀⠀⠙⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣠⣶⠿⠿⢷⣦⣤⣶⣶⡄⣀⣀⡀⠀⠀⠀⠀⢹⣧⣶⠾⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠉⠉⠛⠿⣶⣤⣿⠇⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣿⢁⠀⠀⠀⠈⠁⠀⠘⠿⠛⠛⠻⣷⡄⣠⡾⠟⠉⠀⢀⣠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣀⠀⠈⠛⢿⣦⡀⠀⠀⢠⣿⠛⠛⣷⣶⠿⠛⢿⣶⡀⠀⠀⠀
+⠀⠀⣀⣿⣟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠋⠀⠀⢀⡴⠋⠀⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠃⠈⠳⣄⠀⠀⠙⢿⣦⣠⣼⡧⠀⠀⠙⠃⠀⠀⠀⢸⡇⠀⠀⠀
+⢠⣾⠟⠋⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡿⠃⠀⠀⢀⣞⠀⠀⠀⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠀⠀⠘⣧⠀⠀⢠⣿⠋⠉⠀⠀⠀⠀⠀⠀⠀⢠⣿⣧⣤⡀⠀
+⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢻⡆⠀⠀⠀⠀⠉⢉⣭⣭⣅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣉⣭⣟⡉⠁⠀⠀⢸⣧⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠘⣿⡄
+⢿⣇⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣾⠃⠀⠀⠀⢀⣾⣿⣿⡏⠉⣳⡄⠀⠀⠀⠀⠀⠀⣰⢿⣿⡟⠉⠹⣆⠀⠀⠀⢹⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⡇
+⠀⢹⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣷⡀⠀⠀⠀⠀⠸⡇⠿⣿⣿⡾⢋⡟⠀⠀⠀⠀⠀⠀⣇⠸⣿⣿⣶⠏⣿⠀⠀⠀⠸⣷⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠃
+⠀⢿⡇⠀⢀⠀⠀⠀⠀⠀⠀⠀⢀⢀⣿⠇⣴⠚⠉⠙⠳⡿⢦⣄⣀⣴⠞⣁⣤⡶⠶⢶⣤⣄⡘⠷⣤⣀⣤⠴⡿⠛⠉⠉⠢⣨⡿⠛⠁⠀⠀⠀⠀⠀⠀⢰⣾⠟⠁⠀
+⠀⠈⠛⢿⡿⠀⠀⠀⠀⠀⠀⠀⠚⣿⡏⠰⡇⠀⠀⠀⠀⣱⠀⠈⠁⣠⣾⠛⠁⠀⠀⠀⠈⠙⢿⣦⠀⠀⠀⢸⡁⠀⠀⠀⠀⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡆⠀⠀
+⠀⠀⠀⢸⣧⡀⠀⠀⠀⠀⠀⠀⢀⣿⠇⠀⠓⢦⣀⣀⠴⠃⠀⠀⢠⡿⠁⠀⠀⠀⠀⠀⠀⠀⠈⢻⣦⠀⠀⠀⠳⢤⣄⣠⡜⠁⠙⣿⡆⠀⠀⢀⣄⣀⣀⣤⡿⠃⠀⠀
+⠀⠀⠀⠀⠙⠻⠿⢷⣆⣀⣀⣴⣾⡋⠀⠀⠀⠀⣴⠛⠙⠓⠦⣄⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣠⠶⠛⠉⠳⢦⠀⠀⠀⠀⠹⣧⣀⣠⣾⠟⠉⠉⠉⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠋⠁⢻⣇⠀⠀⠀⠀⡇⠀⠠⡄⠀⠈⠙⣿⡄⠀⠀⠀⠀⠀⠀⠀⢀⣾⠟⠁⠀⢠⡆⠀⢈⡇⠀⠀⠀⢠⡿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡄⠀⠀⠀⣿⠀⠀⠻⣄⠀⠀⠈⠻⣦⣄⡀⠀⢀⣀⣴⡿⠋⠀⠀⢠⠟⠀⠀⣸⠃⠀⠀⢀⣾⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡄⠀⠀⠘⣇⠀⠀⠘⢧⡀⠀⠀⠈⠙⠛⠛⠛⠋⠉⠀⠀⢀⡴⠋⠀⠀⣰⠏⠀⠀⢀⣾⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣆⠀⠀⠘⣦⡀⠀⠀⠉⠳⣄⣀⠀⠀⠀⠀⠀⠀⣀⡴⠋⠀⠀⢀⡴⠃⠀⠀⢠⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣷⣄⠀⠀⠻⢦⣀⠀⠀⠀⠉⠙⠓⠒⠒⠛⠉⠀⠀⠀⢀⡴⠟⠁⠀⢀⣾⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢷⣦⣀⠀⠉⠛⠶⠤⣄⣀⣀⣀⣀⣀⣀⡤⠴⠚⠋⠀⢀⣤⡾⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⣦⣤⣀⣀⠀⠈⠉⠉⠉⠉⠀⣀⣀⣤⣴⡾⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠒⠚⠛⠛⠛⠋⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+________                __        ____.                __                
+\______ \ _____ _______|  | __   |    | ____   _______/  |_  ___________ 
+ |    |  \\__  \\_  __ \  |/ /   |    |/ __ \ /  ___/\   __\/ __ \_  __ \
+ |    `   \/ __ \|  | \/    </\__|    \  ___/ \___ \  |  | \  ___/|  | \/
+/_______  (____  /__|  |__|_ \________|\___  >____  > |__|  \___  >__|   
+        \/     \/           \/             \/     \/            \/       
+
+What's going down?
+Oh, you noticed, huh? Your precious files? Gone, vanished in the blink of an eye, like a balloon animal popped by Jester’s sneaky little hands. Locked up tighter than the door to his magic trunk, with military-grade encryption. Don't bother googling “how to decrypt files.” Spoiler alert: you can’t. Your data? It’s now a prisoner in Jester’s circus of chaos. And unless you cough up 2.4 million PHP within 48 hours, it’s staying locked up forever. Forever.
+
+Why is this happening?
+Well, let’s just say, you made it way too easy. Your "security" was about as effective as a rubber chicken in a knife fight. Clicking random links, downloading files from who-knows-where, trusting everyone like an open book—it’s like you invited disaster with confetti in the air.
+But hey, at least it’s us, Jester and his merry band, instead of some faceless troll who’d ask for pocket change and snacks. I’m at least giving you a chance to fix the mess you’ve made.
+
+What do we want?
+    - 2,400,000 PHP
+    - Delivered in 48 hours
+
+That’s it. No haggling, no negotiating. Pay up, or wave goodbye to your files. No exceptions, no refunds, and definitely no mercy.
+
+Why the rush?
+Because Jester doesn’t wait around for the curtain to rise. You either move fast or watch your files slip into oblivion. After 48 hours, the key goes up in smoke, and your files will be forever lost to the black void. Poof. Gone.
+
+How to pay?
+    - Send 2.4 million PHP to the following crypto wallet address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+    - After payment, email proof of payment to [a1sberg@protonmail.com]
+
+Once the payment is verified, Jester himself will send the encryption key to the same email address and provide you with the decryptor. Easy as a sleight-of-hand trick, right?
+
+Why you?
+Because you made it too easy. You’re like a big top tent with a flashing sign that says “Welcome! Steal Everything Inside!” Jester couldn’t resist. Your system was practically begging to be taken for a ride. Now you're the star of our show.
+
+A little advice for next time:
+    - Treat your passwords like they’re your last balloon animal, don’t just hand them out.
+    - Don’t click on “Congratulations!” emails like they’re free candy.
+    - And for goodness’ sake, act fast before Jester’s laughter is the last sound your files hear.
+
+CLOCK’S TICKING. WILL YOU BE THE HERO, OR THE FOOL? CHOOSE WISELY.
+

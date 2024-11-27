@@ -1,0 +1,5 @@
+pycryptodome
+sockets
+PyInstaller
+Flasks
+Flask
