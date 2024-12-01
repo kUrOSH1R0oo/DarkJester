@@ -106,4 +106,4 @@ DarkJester is intended strictly for educational and ethical hacking purposes. It
 
 ## Author
 
-- Kura1yume (A1SBERG)
+- KuroShiro (A1SBERG)
