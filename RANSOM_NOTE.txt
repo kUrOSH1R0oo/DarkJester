@@ -32,35 +32,34 @@ ________                __        ____.                __
 /_______  (____  /__|  |__|_ \________|\___  >____  > |__|  \___  >__|   
         \/     \/           \/             \/     \/            \/       
 
-What's going down?
-Oh, you noticed, huh? Your precious files? Gone, vanished in the blink of an eye, like a balloon animal popped by Jester’s sneaky little hands. Locked up tighter than the door to his magic trunk, with military-grade encryption. Don't bother googling “how to decrypt files.” Spoiler alert: you can’t. Your data? It’s now a prisoner in Jester’s circus of chaos. And unless you cough up 2.4 million PHP within 48 hours, it’s staying locked up forever. Forever.
+!!Your Files Have Been Compromised!!
 
-Why is this happening?
-Well, let’s just say, you made it way too easy. Your "security" was about as effective as a rubber chicken in a knife fight. Clicking random links, downloading files from who-knows-where, trusting everyone like an open book—it’s like you invited disaster with confetti in the air.
-But hey, at least it’s us, Jester and his merry band, instead of some faceless troll who’d ask for pocket change and snacks. I’m at least giving you a chance to fix the mess you’ve made.
+All your important files have been encrypted and are now stored on our secure server. Don’t bother trying to recover them yourself—our encryption is military-grade and unbreakable. If you want your files back, you have 48HRS to pay the specified amount. Failure to do so will result in the PERMANENT LOSS of your data, or worse, its PUBLIC RELEASE OR SALE to interested parties.  
 
-What do we want?
-    - 2,400,000 PHP
-    - Delivered in 48 hours
+What Happened?
+We’ve successfully penetrated your system due to weak security measures. This could include poor password practices, outdated software, or clicking on unverified links or attachments. Our system took control and ensured your files are no longer accessible to you.  
 
-That’s it. No haggling, no negotiating. Pay up, or wave goodbye to your files. No exceptions, no refunds, and definitely no mercy.
+What We Demand:  
+- **Amount:** 2,400,000 PHP  
+- **Deadline:** 48 hours  
 
-Why the rush?
-Because Jester doesn’t wait around for the curtain to rise. You either move fast or watch your files slip into oblivion. After 48 hours, the key goes up in smoke, and your files will be forever lost to the black void. Poof. Gone.
+No negotiations. No extensions. You either pay and retrieve your files, or we take action.  
 
-How to pay?
-    - Send 2.4 million PHP to the following crypto wallet address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
-    - After payment, email proof of payment to [a1sberg@protonmail.com]
+Consequences of Non-Payment:  
+If payment is not received within the deadline, here’s what will happen:  
+1. Your files will be permanently inaccessible, and the decryption key destroyed.  
+2. Sensitive information may be leaked publicly or sold to third parties.  
+3. Legal, reputational, and financial damage could be extensive.  
 
-Once the payment is verified, Jester himself will send the encryption key to the same email address and provide you with the decryptor. Easy as a sleight-of-hand trick, right?
+We’re not bluffing, this is your only chance to recover your data.  
 
-Why you?
-Because you made it too easy. You’re like a big top tent with a flashing sign that says “Welcome! Steal Everything Inside!” Jester couldn’t resist. Your system was practically begging to be taken for a ride. Now you're the star of our show.
+How to Pay:  
+1. Transfer 2,400,000 PHP to the following cryptocurrency wallet: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+2. Send proof of payment to: a1sberg@protonmail.com
 
-A little advice for next time:
-    - Treat your passwords like they’re your last balloon animal, don’t just hand them out.
-    - Don’t click on “Congratulations!” emails like they’re free candy.
-    - And for goodness’ sake, act fast before Jester’s laughter is the last sound your files hear.
+Once payment is verified, we will send you a decryption key and instructions on how to recover your files.  
 
-CLOCK’S TICKING. WILL YOU BE THE HERO, OR THE FOOL? CHOOSE WISELY.
+Act Now:  
+You have limited time to act. After the deadline, your files will be gone forever, or worse, used against you. The clock is ticking.  
 
+MAKE THE PAYMENT NOW AND REGAIN CONTROL. THIS IS YOUR ONLY OPTION.
