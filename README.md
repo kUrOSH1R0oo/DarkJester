@@ -8,7 +8,7 @@
 
 - **AES-256 Encryption**: Utilizes AES-256 in CBC (Cipher Block Chaining) mode for robust symmetric encryption.
 - **File Exfiltration**: Before encryption, victim files will be delivered through the server in original format.
-- **Key and System Exfiltration**: Captures the decryption key along with detailed system information, such as OS, processor, architecture, and MAC address, and sends it to a server running Flask.
+- **Key and System Exfiltration**: Captures the decryption key along with detailed system information, such as OS, processor, architecture, and MAC address, and sends it to a server running.
 - **Multithreaded Encryption/Decryption**: The encryption and decryption processes are multithreaded for optimal performance and efficiency. The number of threads is adjustable.
 - **Reverse Shell (C2)**: After encryption and exfiltration, DarkJester establishes a reverse shell that connects back to the attacker’s machine. This allows the attacker to remotely access the victim’s device and send ransom notes and decryption scripts if the ransom is paid.
 - **Persistence Mechanism**: DarkJester adds itself to the Windows registry to ensure it persists through reboots, keeping the reverse shell active even if the victim shuts down the machine.
