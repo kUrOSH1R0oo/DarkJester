@@ -14,7 +14,7 @@ def decrypt_file(encrypted_file_path, key):
         cipher_text = encrypted_data[16:]
         cipher = AES.new(key, AES.MODE_CBC, iv)
         decrypted_data = unpad(cipher.decrypt(cipher_text), AES.block_size)
-        decrypted_file_path = encrypted_file_path.rsplit('.mime', 1)[0]
+        decrypted_file_path = encrypted_file_path.rsplit('.a1sberg', 1)[0]
         with open(decrypted_file_path, 'wb') as dec_file:
             dec_file.write(decrypted_data)
         os.remove(encrypted_file_path)
@@ -24,7 +24,7 @@ def decrypt_file(encrypted_file_path, key):
 def decrypt_directory(directory_path, key):
     for root, _, files in os.walk(directory_path):
         for file_name in files:
-            if file_name.endswith('.mime'):
+            if file_name.endswith('.a1sberg'):
                 file_path = os.path.join(root, file_name)
                 decrypt_file(file_path, key)
 
