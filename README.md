@@ -78,7 +78,7 @@
 4. **Run the Flask server**:
     - Ensure the Flask server is set up and running to accept system information and decryption keys:
       ```bash
-      python3 server.py
+      python3 darkjester_server.py <PORT>
       ```
 
 5. **Wait for connections**, The server should now be ready to handle requests from the victim machine.
