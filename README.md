@@ -51,9 +51,6 @@
       ```bash
       pip3 install -r requirements.txt
       ```
-      ```bash
-      pip3 install Flask
-      ```
 
 2. **Install NetCat** for the Reverse Shell Listener:
     - On Ubuntu/Debian
