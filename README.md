@@ -10,8 +10,9 @@
 - **File Exfiltration**: Before encryption, victim files will be delivered through the server in original format.
 - **Key and System Exfiltration**: Captures the decryption key along with detailed system information, such as OS, processor, architecture, and MAC address, and sends it to a server running.
 - **Multithreaded Encryption/Decryption**: The encryption and decryption processes are multithreaded for optimal performance and efficiency. The number of threads is adjustable.
-- **Reverse Shell (C2)**: After encryption and exfiltration, DarkJester establishes a reverse shell that connects back to the attacker’s machine. This allows the attacker to remotely access the victim’s device and send ransom notes and decryption scripts if the ransom is paid.
-- **Persistence Mechanism**: DarkJester adds itself to the Windows registry to ensure it persists through reboots, keeping the reverse shell active even if the victim shuts down the machine.
+- **Command and Control (C2)**: After encryption and exfiltration, DarkJester establishes a reverse shell that connects back to the attacker’s machine. This allows the attacker to remotely access the victim’s device and send ransom notes and decryption scripts if the ransom is paid.
+- **Persistence Mechanism**: DarkJester adds itself to the Windows registry/Daemon in Linux to ensure it persists through reboots, keeping the reverse shell active even if the victim shuts down the machine.
+- **Kiosk Mode (Ransom Note Display)**: DarkJester now features an advanced Kiosk Mode functionality that activates immediately after the encryption process is complete. In this state, the compromised Windows system is locked into a fullscreen environment where normal user interaction is restricted. A persistent ransom note is displayed on-screen, along with a secure input field for entering the decryption key. This immersive mode ensures the victim’s attention is fully directed toward the ransom message, enhancing the psychological pressure often associated with ransomware attacks. Note: This feature is currently supported on Windows operating systems only.
 
 ## Installation and Setup
 
@@ -52,24 +53,10 @@
       pip3 install -r requirements.txt
       ```
 
-2. **Install NetCat** for the Reverse Shell Listener:
-    - On Ubuntu/Debian
-      ```bash
-      apt install netcat
-      ```
-    - On Fedora
-      ```bash
-      dnf install nc
-      ```
-    - On Arch Linux
-      ```bash
-      pacman -S gnu-netcat
-      ```
-
-3. **Run the server**:
+2. **Run the server**:
     - Ensure the server is set up and running to accept system information and decryption keys:
       ```bash
-      python3 darkjester_server.py <EXFIL_PORT> <REVERSE_SHELL_PORT>
+      python3 darkjester_server.py <EXFIL_PORT> <C2_PORT>
       ```
 
 4. **Wait for connections**, The server should now be ready to handle requests from the victim machine.
@@ -94,7 +81,11 @@ This tool is provided `as is,` for educational purposes only. The authors and co
 
 ## Disclaimer
 
-DarkJester is intended strictly for educational and ethical hacking purposes. It is illegal to use this tool for any malicious activity or unauthorized access to systems. Always ensure you have written permission before testing or using cybersecurity tools on networks or systems that do not belong to you.
+DarkJester is a powerful ransomware tool developed for educational and research purposes only. 
+Unauthorized use of this software is strictly illegal and may result in criminal prosecution. 
+Running or deploying DarkJester on any system without explicit permission from the system owner constitutes a violation of cybersecurity laws. 
+This tool is intended solely for demonstrating security flaws and testing defenses in controlled environments. 
+Always act responsibly and ethically when working with this kind tool.
 
 ## Author
 
