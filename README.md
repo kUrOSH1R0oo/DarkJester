@@ -13,9 +13,7 @@
 | **Key and System Exfiltration**  | The generated encryption key, along with detailed information about the victim’s system — such as operating system, CPU model, system architecture, MAC address, and hostname — is stealthily sent to the attacker's server. This helps the attacker uniquely identify victims and manage decryptions post-payment. |
 | **Multithreaded Encryption/Decryption** | Encryption and decryption operations are executed using multiple threads simultaneously, significantly improving speed and performance. The thread count is adjustable, allowing the malware to adapt to different system capabilities for optimal efficiency. |
 | **Command and Control (C2)**     | After the encryption and exfiltration processes are completed, a reverse shell is established to connect the victim’s machine back to the attacker. Through this persistent shell, the attacker can execute commands, drop additional payloads, and send decryption tools or ransom notes if payment is made. |
-| **Persistence Mechanism**        | DarkJester ensures its survival after system reboots by registering itself in the Windows Registry (or setting up a daemon/service on Linux systems). This mechanism allows the malware to reinitialize upon system startup, maintaining control over the compromised machine. |
 | **Kiosk Mode (Ransom Note Display)** | Once file encryption concludes, the malware activates Kiosk Mode, locking the system into a fullscreen, restricted environment. All standard user interactions are disabled. A prominently displayed ransom message informs the victim of the breach and provides a secure text field for inputting the decryption key. This immersive experience is designed to maximize psychological pressure and urgency. Note: This feature is only supported on Windows operating systems. |
-
 
 ## Installation and Setup
 
