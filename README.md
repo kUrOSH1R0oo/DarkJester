@@ -43,6 +43,8 @@
 
 6. **Prepare the attacker machine** before executing the payload on the victim's machine.
 
+**NOTE: For testing, it's better to use the specific version!**
+
 ---
 
 ### **Attacker Side**
